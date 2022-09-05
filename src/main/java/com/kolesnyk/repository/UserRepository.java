@@ -1,4 +1,4 @@
-package com.kolesnyk.dao;
+package com.kolesnyk.repository;
 
 import com.kolesnyk.model.User;
 import org.springframework.data.repository.CrudRepository;

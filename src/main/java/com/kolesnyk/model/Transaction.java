@@ -3,7 +3,7 @@ package com.kolesnyk.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transaction")
@@ -18,10 +18,16 @@ public class Transaction {
 //    @ManyToOne
     private int productId;
 
+    //status in transaction and batch
+    //todo
+    //fix entity
+    //migrations for structure
+    //DTO
+
     //    @ManyToOne
     private int userId;
 
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
-    private Date updatedAt;
+    private LocalDateTime updatedAt;
 }
