@@ -24,4 +24,6 @@ public class Batch {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    private boolean status;
 }

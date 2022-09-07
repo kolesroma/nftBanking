@@ -24,7 +24,8 @@ public class Transaction {
     private Product product;
 
     //status in transaction and batch
-    //migrations for structure
+    //      # DO NOT MODIFY DATABASE
+    //      # MAKE ALL CHANGES IN Vx FILES once
     //DTO
 
     @ManyToOne
