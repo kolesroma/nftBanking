@@ -1,6 +1,8 @@
 package com.kolesnyk.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -8,6 +10,8 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "transaction")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Transaction {
     @Id
     @GeneratedValue
@@ -15,17 +19,21 @@ public class Transaction {
 
     private int amount;
 
-//    @ManyToOne
-    private int productId;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     //status in transaction and batch
-    //todo
-    //fix entity
     //migrations for structure
     //DTO
 
-    //    @ManyToOne
-    private int userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name="batch_id")
+    private Batch batch;
 
     private LocalDateTime createdAt;
 

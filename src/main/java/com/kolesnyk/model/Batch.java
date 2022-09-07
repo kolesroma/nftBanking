@@ -1,6 +1,8 @@
 package com.kolesnyk.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -8,9 +10,11 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "batch")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Batch {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private int id;
 
     private int priority;

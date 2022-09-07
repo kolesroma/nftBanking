@@ -1,6 +1,8 @@
 package com.kolesnyk.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +13,8 @@ import java.util.Date;
 @Entity
 @Table(name = "product")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue
@@ -20,7 +24,7 @@ public class Product {
 
     private String shortName;
 
-    private String longName;
+    private String fullName;
 
     private String description;
 
