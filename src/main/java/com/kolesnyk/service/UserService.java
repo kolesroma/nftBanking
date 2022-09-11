@@ -6,11 +6,11 @@ import java.util.Collection;
 import java.util.Optional;
 
 public interface UserService {
-    User saveUser(User user);
+    void saveUser(User user);
 
     Optional<User> getById(int id);
 
-    Collection<User> getAllUsers();
+    Collection<User> getAllUsers(int page);
 
     void updateUser(User user, int userId);
 
