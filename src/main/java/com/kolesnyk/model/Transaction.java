@@ -23,11 +23,6 @@ public class Transaction {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    //status in transaction and batch
-    //      # DO NOT MODIFY DATABASE
-    //      # MAKE ALL CHANGES IN Vx FILES once
-    //DTO
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

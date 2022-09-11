@@ -15,7 +15,7 @@ public class NftApplication {
         SpringApplication.run(NftApplication.class, args);
     }
 
-    @Bean
+//    @Bean
     CommandLineRunner sd(UserService userService) {
         return args -> {
             System.out.println("userService.getById(1) = " + userService.getById(1));
