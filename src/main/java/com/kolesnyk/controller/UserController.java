@@ -1,5 +1,7 @@
 package com.kolesnyk.controller;
 
+import com.kolesnyk.dto.UserCreationDto;
+import com.kolesnyk.dto.UserMapper;
 import com.kolesnyk.model.User;
 import com.kolesnyk.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -23,8 +25,8 @@ public class UserController {
     }
 
     @PostMapping
-    public void createUser(@Valid @RequestBody User user) {
-        userService.saveUser(user);
+    public void createUser(@Valid @RequestBody UserCreationDto userDto, UserMapper mapper) {
+        userService.saveUser(mapper.toUser(userDto));
     }
 
     @GetMapping("/id/{userId}")
@@ -38,8 +40,8 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    public void updateUser(@RequestBody User user, @PathVariable int userId) {
-        userService.updateUser(user, userId);
+    public void updateUser(@RequestBody UserCreationDto userDto, UserMapper mapper, @PathVariable int userId) {
+        userService.updateUser(mapper.toUser(userDto), userId);
     }
 
     @DeleteMapping("/{userId}")

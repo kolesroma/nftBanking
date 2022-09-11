@@ -1,27 +1,18 @@
-package com.kolesnyk.model;
+package com.kolesnyk.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 
-@Entity
-@Table(name = "user")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User {
-    @Id
-    @GeneratedValue
-    private int id;
-
+public class UserCreationDto {
     @NotNull
     @NotBlank
     private String username;
@@ -38,5 +29,4 @@ public class User {
 
     @NotNull
     private boolean enabled;
-
 }
