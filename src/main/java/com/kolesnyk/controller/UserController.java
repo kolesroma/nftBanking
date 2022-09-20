@@ -45,10 +45,6 @@ public class UserController {
         userService.updateUser(userDto, userId);
     }
 
-    // implement 3 more controllers
-    // @Patch -> new dto to update in db
-    // next idea = ? extends springJdbc my repos implementations
-
     @DeleteMapping("/{userId}")
     public void deleteUser(@PathVariable int userId) {
         userService.deleteUser(userId);
