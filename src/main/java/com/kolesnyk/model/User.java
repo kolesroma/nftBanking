@@ -6,10 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "user")
@@ -22,18 +19,16 @@ public class User {
     @GeneratedValue
     private int id;
 
-    @NotNull
     @NotBlank
     private String username;
 
+    @Email
     private String email;
 
-    @NotNull
     @NotBlank
     private String phone;
 
     @NotNull
-    @NotBlank
     private int balance;
 
     @NotNull

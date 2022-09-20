@@ -1,9 +1,13 @@
 package com.kolesnyk.service;
 
+import com.kolesnyk.dto.UserCreationDto;
+import com.kolesnyk.dto.UserMapper;
+import com.kolesnyk.exception.EntityNotFound;
 import com.kolesnyk.model.User;
 import com.kolesnyk.repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,14 +20,16 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final UserMapper mapper;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, UserMapper mapper) {
         this.userRepository = userRepository;
+        this.mapper = mapper;
     }
 
     @Override
-    public void saveUser(User user) {
-        userRepository.save(user);
+    public void saveUser(UserCreationDto userDto) {
+        userRepository.save(mapper.toUser(userDto));
     }
 
     @Override
@@ -32,9 +38,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Collection<User> getAllUsers(int page) {
-        int pageSize = 5;
-        Pageable paging = PageRequest.of(page, pageSize);
+    public Collection<User> getAllUsers(int page, int size) {
+        Pageable paging = PageRequest.of(page, size);
         Page<User> pagedUsers = userRepository.findAll(paging);
         return  pagedUsers.hasContent() ?
                 pagedUsers.getContent() :
@@ -42,19 +47,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
-    public void updateUser(User user, int userId) {
-        User dbUser = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("there is no user with id " + userId));
-        dbUser.setBalance(user.getBalance());
-        dbUser.setUsername(user.getUsername());
-        dbUser.setEmail(user.getEmail());
-        dbUser.setEnabled(user.isEnabled());
-        dbUser.setPhone(user.getPhone());
+    public void updateUser(UserCreationDto userDto, int userId) {
+        if (!userRepository.existsById(userId))
+            throw new EntityNotFound("there is no user with id " + userId);
+        User user = mapper.toUser(userDto);
+        user.setId(userId);
+        userRepository.save(user);
     }
 
     @Override
     public void deleteUser(int userId) {
+        if (!userRepository.existsById(userId))
+            throw new EntityNotFound("there is no user with id " + userId);
         userRepository.deleteById(userId);
     }
 }

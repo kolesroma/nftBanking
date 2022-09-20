@@ -1,7 +1,9 @@
 package com.kolesnyk.dto;
 
 import com.kolesnyk.model.User;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserMapper {
     public User toUser(UserCreationDto userDto) {
         return User.builder()

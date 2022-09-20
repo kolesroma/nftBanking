@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -13,18 +14,16 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Builder
 public class UserCreationDto {
-    @NotNull
     @NotBlank
     private String username;
 
+    @Email
     private String email;
 
-    @NotNull
     @NotBlank
     private String phone;
 
     @NotNull
-    @NotBlank
     private int balance;
 
     @NotNull

@@ -1,22 +1,23 @@
 package com.kolesnyk.controller;
 
 import com.kolesnyk.dto.UserCreationDto;
-import com.kolesnyk.dto.UserMapper;
+import com.kolesnyk.exception.EntityNotFound;
 import com.kolesnyk.model.User;
 import com.kolesnyk.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/nft/users")
+@Validated
 public class UserController {
     private final UserService userService;
 
@@ -25,24 +26,28 @@ public class UserController {
     }
 
     @PostMapping
-    public void createUser(@Valid @RequestBody UserCreationDto userDto, UserMapper mapper) {
-        userService.saveUser(mapper.toUser(userDto));
+    public void createUser(@Valid @RequestBody UserCreationDto userDto) {
+        userService.saveUser(userDto);
     }
 
-    @GetMapping("/id/{userId}")
+    @GetMapping("/{userId}")
     public ResponseEntity<User> getUserById(@PathVariable int userId) {
         return ResponseEntity.of(userService.getById(userId));
     }
 
-    @GetMapping("/page/{page}")
-    public Collection<User> getUsersOnPage(@PathVariable int page) {
-        return userService.getAllUsers(page);
+    @GetMapping
+    public Collection<User> getUsersOnPage(@RequestParam @Min(0) int page, @RequestParam @Min(1) @Max(100) int size) {
+        return userService.getAllUsers(page, size);
     }
 
     @PutMapping("/{userId}")
-    public void updateUser(@RequestBody UserCreationDto userDto, UserMapper mapper, @PathVariable int userId) {
-        userService.updateUser(mapper.toUser(userDto), userId);
+    public void updateUser(@Valid @RequestBody UserCreationDto userDto, @PathVariable int userId) {
+        userService.updateUser(userDto, userId);
     }
+
+    // implement 3 more controllers
+    // @Patch -> new dto to update in db
+    // next idea = ? extends springJdbc my repos implementations
 
     @DeleteMapping("/{userId}")
     public void deleteUser(@PathVariable int userId) {
@@ -50,14 +55,8 @@ public class UserController {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException e) {
-        Map<String, String> errors = new HashMap<>();
-        e.getBindingResult().getAllErrors().forEach(error -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
-        });
-        return errors;
+    @ExceptionHandler({EntityNotFound.class, ConstraintViolationException.class})
+    public String entityValidation(RuntimeException e) {
+        return e.getMessage();
     }
 }
