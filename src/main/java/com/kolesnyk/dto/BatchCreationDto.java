@@ -1,26 +1,19 @@
-package com.kolesnyk.model;
+package com.kolesnyk.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "batch")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Batch {
-    @Id
-    @GeneratedValue
-    private int id;
-
+public class BatchCreationDto {
     @NotBlank
     private String comment;
 
