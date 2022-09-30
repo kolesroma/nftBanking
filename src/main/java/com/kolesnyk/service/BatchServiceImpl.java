@@ -2,7 +2,7 @@ package com.kolesnyk.service;
 
 import com.kolesnyk.dto.BatchCreationDto;
 import com.kolesnyk.dto.BatchMapper;
-import com.kolesnyk.exception.EntityNotFound;
+import com.kolesnyk.exception.BatchNotFound;
 import com.kolesnyk.model.Batch;
 import com.kolesnyk.repository.BatchRepository;
 import org.springframework.data.domain.PageRequest;
@@ -27,10 +27,10 @@ public class BatchServiceImpl implements BatchService {
     }
 
     @Override
-    public Optional<Batch> getById(int id) {
+    public Optional<Batch> getById(int id) { //replace to DTO (BatchCreationDto) // no id
         return batchRepository.findById(id);
     }
-
+// batchDto with id AND userCreationDto with no id?
     @Override
     public Collection<Batch> getAllProducts(int page, int size) {
         return batchRepository.findAll(PageRequest.of(page, size))
@@ -40,7 +40,7 @@ public class BatchServiceImpl implements BatchService {
     @Override
     public void updateBatch(BatchCreationDto batchDto, int id) {
         if (!batchRepository.existsById(id))
-            throw new EntityNotFound("there is no batch with id " + id);
+            throw new BatchNotFound("there is no batch with id " + id);
         Batch batch = mapper.toBatch(batchDto);
         batch.setId(id);
         batchRepository.save(batch);
@@ -49,7 +49,7 @@ public class BatchServiceImpl implements BatchService {
     @Override
     public void deleteBatch(int id) {
         if (!batchRepository.existsById(id))
-            throw new EntityNotFound("there is no batch with id " + id);
+            throw new BatchNotFound("there is no batch with id " + id);
         batchRepository.deleteById(id);
     }
 }

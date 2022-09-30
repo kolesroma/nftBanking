@@ -2,16 +2,13 @@ package com.kolesnyk.service;
 
 import com.kolesnyk.dto.UserCreationDto;
 import com.kolesnyk.dto.UserMapper;
-import com.kolesnyk.exception.EntityNotFound;
+import com.kolesnyk.exception.UserNotFound;
 import com.kolesnyk.model.User;
 import com.kolesnyk.repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -49,7 +46,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(UserCreationDto userDto, int userId) {
         if (!userRepository.existsById(userId))
-            throw new EntityNotFound("there is no user with id " + userId);
+            throw new UserNotFound("there is no user with id " + userId);
         User user = mapper.toUser(userDto);
         user.setId(userId);
         userRepository.save(user);
@@ -58,7 +55,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(int userId) {
         if (!userRepository.existsById(userId))
-            throw new EntityNotFound("there is no user with id " + userId);
+            throw new UserNotFound("there is no user with id " + userId);
         userRepository.deleteById(userId);
     }
 }
