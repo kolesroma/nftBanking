@@ -1,5 +1,7 @@
-package com.kolesnyk.dto;
+package com.kolesnyk.dto.mapper;
 
+import com.kolesnyk.dto.UserCreationDto;
+import com.kolesnyk.dto.UserDto;
 import com.kolesnyk.model.User;
 import org.springframework.stereotype.Component;
 

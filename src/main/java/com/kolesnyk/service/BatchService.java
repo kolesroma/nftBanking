@@ -1,17 +1,16 @@
 package com.kolesnyk.service;
 
 import com.kolesnyk.dto.BatchCreationDto;
-import com.kolesnyk.model.Batch;
+import com.kolesnyk.dto.BatchDto;
 
 import java.util.Collection;
-import java.util.Optional;
 
 public interface BatchService {
     void saveBatch(BatchCreationDto batchDto);
 
-    Optional<Batch> getById(int id);
+    BatchDto getById(int id);
 
-    Collection<Batch> getAllProducts(int page, int size);
+    Collection<BatchDto> getAllProducts(int page, int size);
 
     void updateBatch(BatchCreationDto batchDto, int id);
 

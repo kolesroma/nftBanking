@@ -1,11 +1,12 @@
-package com.kolesnyk.service;
+package com.kolesnyk.service.impl;
 
 import com.kolesnyk.dto.ProductCreationDto;
 import com.kolesnyk.dto.ProductDto;
-import com.kolesnyk.dto.ProductMapper;
+import com.kolesnyk.dto.mapper.ProductMapper;
 import com.kolesnyk.exception.ProductNotFound;
 import com.kolesnyk.model.Product;
 import com.kolesnyk.repository.ProductRepository;
+import com.kolesnyk.service.ProductService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,7 @@
 package com.kolesnyk.controller;
 
 import com.kolesnyk.dto.BatchCreationDto;
+import com.kolesnyk.dto.BatchDto;
 import com.kolesnyk.model.Batch;
 import com.kolesnyk.service.BatchService;
 import org.springframework.http.ResponseEntity;
@@ -28,12 +29,12 @@ public class BatchController {
     }
 
     @GetMapping("/{batchId}")
-    public ResponseEntity<Batch> getBatchById(@PathVariable int batchId) {
-        return ResponseEntity.of(batchService.getById(batchId));
+    public BatchDto getBatchById(@PathVariable int batchId) {
+        return batchService.getById(batchId);
     }
 
     @GetMapping
-    public Collection<Batch> getBatchesOnPage(@RequestParam @Min(0) int page,
+    public Collection<BatchDto> getBatchesOnPage(@RequestParam @Min(0) int page,
                                               @RequestParam @Min(0) @Max(100) int size) {
         return batchService.getAllProducts(page, size);
     }

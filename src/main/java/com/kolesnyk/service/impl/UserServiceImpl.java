@@ -1,11 +1,12 @@
-package com.kolesnyk.service;
+package com.kolesnyk.service.impl;
 
 import com.kolesnyk.dto.UserCreationDto;
 import com.kolesnyk.dto.UserDto;
-import com.kolesnyk.dto.UserMapper;
+import com.kolesnyk.dto.mapper.UserMapper;
 import com.kolesnyk.exception.UserNotFound;
 import com.kolesnyk.model.User;
 import com.kolesnyk.repository.UserRepository;
+import com.kolesnyk.service.UserService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 

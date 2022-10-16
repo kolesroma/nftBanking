@@ -1,15 +1,16 @@
-package com.kolesnyk.service;
+package com.kolesnyk.service.impl;
 
 import com.kolesnyk.dto.BatchCreationDto;
-import com.kolesnyk.dto.BatchMapper;
+import com.kolesnyk.dto.BatchDto;
+import com.kolesnyk.dto.mapper.BatchMapper;
 import com.kolesnyk.exception.BatchNotFound;
 import com.kolesnyk.model.Batch;
 import com.kolesnyk.repository.BatchRepository;
+import com.kolesnyk.service.BatchService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Optional;
 
 @Service
 public class BatchServiceImpl implements BatchService {
@@ -27,13 +28,16 @@ public class BatchServiceImpl implements BatchService {
     }
 
     @Override
-    public Optional<Batch> getById(int id) {
-        return batchRepository.findById(id);
+    public BatchDto getById(int id) {
+        Batch batch = batchRepository.findById(id)
+                .orElseThrow(() -> new BatchNotFound("there is no batch with id " + id));
+        return mapper.toDto(batch);
     }
 
     @Override
-    public Collection<Batch> getAllProducts(int page, int size) {
+    public Collection<BatchDto> getAllProducts(int page, int size) {
         return batchRepository.findAll(PageRequest.of(page, size))
+                .map(mapper::toDto)
                 .getContent();
     }
 
