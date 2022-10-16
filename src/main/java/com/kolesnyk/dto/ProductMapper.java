@@ -15,4 +15,15 @@ public class ProductMapper {
                 .upc(productDto.getUpc())
                 .build();
     }
+
+    public ProductDto toDto(Product product) {
+        return ProductDto.builder()
+                .id(product.getId())
+                .description(product.getDescription())
+                .shortName(product.getShortName())
+                .price(product.getPrice())
+                .fullName(product.getFullName())
+                .upc(product.getUpc())
+                .build();
+    }
 }

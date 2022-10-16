@@ -1,6 +1,7 @@
 package com.kolesnyk.service;
 
 import com.kolesnyk.dto.ProductCreationDto;
+import com.kolesnyk.dto.ProductDto;
 import com.kolesnyk.dto.ProductMapper;
 import com.kolesnyk.exception.ProductNotFound;
 import com.kolesnyk.model.Product;
@@ -9,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -27,13 +27,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<Product> getById(int id) {
-        return productRepository.findById(id);
+    public ProductDto getById(int id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFound("there is no product with id " + id));
+        return mapper.toDto(product);
     }
 
     @Override
-    public Collection<Product> getAllProducts(int page, int size) {
+    public Collection<ProductDto> getAllProducts(int page, int size) {
         return productRepository.findAll(PageRequest.of(page, size))
+                .map(mapper::toDto)
                 .getContent();
     }
 

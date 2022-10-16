@@ -1,9 +1,8 @@
 package com.kolesnyk.controller;
 
 import com.kolesnyk.dto.ProductCreationDto;
-import com.kolesnyk.model.Product;
+import com.kolesnyk.dto.ProductDto;
 import com.kolesnyk.service.ProductService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,12 +27,12 @@ public class ProductController {
     }
 
     @GetMapping("/{productId}")
-    public ResponseEntity<Product> getProductById(@PathVariable int productId) {
-        return ResponseEntity.of(productService.getById(productId));
+    public ProductDto getProductById(@PathVariable int productId) {
+        return productService.getById(productId);
     }
 
     @GetMapping
-    public Collection<Product> getProductsOnPage(@RequestParam @Min(0) int page,
+    public Collection<ProductDto> getProductsOnPage(@RequestParam @Min(0) int page,
                                                  @RequestParam @Min(0) @Max(100) int size) {
         return productService.getAllProducts(page, size);
     }
