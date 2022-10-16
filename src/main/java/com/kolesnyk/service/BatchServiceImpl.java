@@ -27,10 +27,10 @@ public class BatchServiceImpl implements BatchService {
     }
 
     @Override
-    public Optional<Batch> getById(int id) { //replace to DTO (BatchCreationDto) // no id
+    public Optional<Batch> getById(int id) {
         return batchRepository.findById(id);
     }
-// batchDto with id AND userCreationDto with no id?
+
     @Override
     public Collection<Batch> getAllProducts(int page, int size) {
         return batchRepository.findAll(PageRequest.of(page, size))

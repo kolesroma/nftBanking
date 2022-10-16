@@ -1,9 +1,8 @@
 package com.kolesnyk.controller;
 
 import com.kolesnyk.dto.UserCreationDto;
-import com.kolesnyk.model.User;
+import com.kolesnyk.dto.UserDto;
 import com.kolesnyk.service.UserService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,12 +27,12 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<User> getUserById(@PathVariable int userId) {
-        return ResponseEntity.of(userService.getById(userId));
+    public UserDto getUserById(@PathVariable int userId) {
+        return userService.getById(userId);
     }
 
     @GetMapping
-    public Collection<User> getUsersOnPage(@RequestParam @Min(0) int page, @RequestParam @Min(1) @Max(100) int size) {
+    public Collection<UserDto> getUsersOnPage(@RequestParam @Min(0) int page, @RequestParam @Min(1) @Max(100) int size) {
         return userService.getAllUsers(page, size);
     }
 

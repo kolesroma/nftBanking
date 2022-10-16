@@ -1,18 +1,15 @@
 package com.kolesnyk.service;
 
 import com.kolesnyk.dto.UserCreationDto;
+import com.kolesnyk.dto.UserDto;
 import com.kolesnyk.dto.UserMapper;
 import com.kolesnyk.exception.UserNotFound;
 import com.kolesnyk.model.User;
 import com.kolesnyk.repository.UserRepository;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -30,17 +27,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> getById(int id) {
-        return userRepository.findById(id);
+    public UserDto getById(int id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFound("there is no user with id " + id));
+        return mapper.toDto(user);
     }
 
     @Override
-    public Collection<User> getAllUsers(int page, int size) {
-        Pageable paging = PageRequest.of(page, size);
-        Page<User> pagedUsers = userRepository.findAll(paging);
-        return  pagedUsers.hasContent() ?
-                pagedUsers.getContent() :
-                new ArrayList<>();
+    public Collection<UserDto> getAllUsers(int page, int size) {
+        return userRepository.findAll(PageRequest.of(page, size))
+                .map(mapper::toDto)
+                .getContent();
     }
 
     @Override
