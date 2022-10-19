@@ -35,7 +35,7 @@ public class BatchController {
 
     @GetMapping
     public Collection<BatchDto> getBatchesOnPage(@RequestParam @Min(0) int page,
-                                              @RequestParam @Min(0) @Max(100) int size) {
+                                                 @RequestParam @Min(0) @Max(100) int size) {
         return batchService.getAllProducts(page, size);
     }
 

@@ -33,7 +33,7 @@ public class ProductController {
 
     @GetMapping
     public Collection<ProductDto> getProductsOnPage(@RequestParam @Min(0) int page,
-                                                 @RequestParam @Min(0) @Max(100) int size) {
+                                                    @RequestParam @Min(0) @Max(100) int size) {
         return productService.getAllProducts(page, size);
     }
 

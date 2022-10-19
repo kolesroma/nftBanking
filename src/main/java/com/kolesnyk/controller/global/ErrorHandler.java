@@ -1,4 +1,4 @@
-package com.kolesnyk.controller;
+package com.kolesnyk.controller.global;
 
 import com.kolesnyk.exception.EntityNotFound;
 import org.springframework.http.HttpStatus;
@@ -10,7 +10,7 @@ import javax.validation.ConstraintViolationException;
 import java.util.Map;
 
 @RestControllerAdvice
-public class GlobalHandler {
+public class ErrorHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({EntityNotFound.class, ConstraintViolationException.class})
     public Map<String, String> entityValidation(RuntimeException e) {

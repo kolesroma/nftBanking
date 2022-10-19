@@ -39,7 +39,7 @@ public class TransactionController {
 
     @PutMapping("/{transactionId}")
     public void updateTransaction(@Valid @RequestBody TransactionCreationDto transactionDto,
-                                   @PathVariable int transactionId) {
+                                  @PathVariable int transactionId) {
         transactionService.updateTransaction(transactionDto, transactionId);
     }
 
