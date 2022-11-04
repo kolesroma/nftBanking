@@ -4,7 +4,7 @@ import com.kolesnyk.dto.UserCreationDto;
 import com.kolesnyk.dto.UserDto;
 import com.kolesnyk.dto.mapper.UserMapper;
 import com.kolesnyk.exception.UserNotFound;
-import com.kolesnyk.model.User;
+import com.kolesnyk.model.UserEntity;
 import com.kolesnyk.repository.UserRepository;
 import com.kolesnyk.service.UserService;
 import org.springframework.data.domain.PageRequest;
@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getById(int id) {
-        User user = userRepository.findById(id)
+        UserEntity user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFound("there is no user with id " + id));
         return mapper.toDto(user);
     }
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     public void updateUser(UserCreationDto userDto, int userId) {
         if (!userRepository.existsById(userId))
             throw new UserNotFound("there is no user with id " + userId);
-        User user = mapper.toUser(userDto);
+        UserEntity user = mapper.toUser(userDto);
         user.setId(userId);
         userRepository.save(user);
     }

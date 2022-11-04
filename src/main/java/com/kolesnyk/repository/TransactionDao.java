@@ -1,7 +1,7 @@
 package com.kolesnyk.repository;
 
-import com.kolesnyk.model.Transaction;
+import com.kolesnyk.model.TransactionEntity;
 
 public interface TransactionDao {
-    void update(Transaction transaction, int id);
+    void update(TransactionEntity transaction, int id);
 }

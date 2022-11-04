@@ -2,13 +2,13 @@ package com.kolesnyk.dto.mapper;
 
 import com.kolesnyk.dto.UserCreationDto;
 import com.kolesnyk.dto.UserDto;
-import com.kolesnyk.model.User;
+import com.kolesnyk.model.UserEntity;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
-    public User toUser(UserCreationDto userDto) {
-        return User.builder()
+    public UserEntity toUser(UserCreationDto userDto) {
+        return UserEntity.builder()
                 .id(0)
                 .username(userDto.getUsername())
                 .email(userDto.getEmail())
@@ -18,7 +18,7 @@ public class UserMapper {
                 .build();
     }
 
-    public UserDto toDto(User user) {
+    public UserDto toDto(UserEntity user) {
         return UserDto.builder()
                 .id(user.getId())
                 .username(user.getUsername())

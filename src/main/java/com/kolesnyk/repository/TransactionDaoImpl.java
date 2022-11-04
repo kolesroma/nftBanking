@@ -1,6 +1,6 @@
 package com.kolesnyk.repository;
 
-import com.kolesnyk.model.Transaction;
+import com.kolesnyk.model.TransactionEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +15,7 @@ public class TransactionDaoImpl implements TransactionDao {
     }
 
     @Override
-    public void update(Transaction transaction, int id) {
+    public void update(TransactionEntity transaction, int id) {
         String sql = "update nft.transaction set amount = ? where id = ?";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 

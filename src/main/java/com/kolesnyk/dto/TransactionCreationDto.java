@@ -1,8 +1,8 @@
 package com.kolesnyk.dto;
 
-import com.kolesnyk.model.Batch;
-import com.kolesnyk.model.Product;
-import com.kolesnyk.model.User;
+import com.kolesnyk.model.BatchEntity;
+import com.kolesnyk.model.ProductEntity;
+import com.kolesnyk.model.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,11 +19,11 @@ public class TransactionCreationDto {
     @NotNull
     private int amount;
 
-    private Product product;
+    private ProductEntity product;
 
-    private User user;
+    private UserEntity user;
 
-    private Batch batch;
+    private BatchEntity batch;
 
     @NotNull
     private LocalDateTime createdAt;

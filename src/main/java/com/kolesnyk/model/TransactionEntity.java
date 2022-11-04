@@ -6,33 +6,38 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "batch")
+@Table(name = "transaction")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Batch {
+public class TransactionEntity {
     @Id
     @GeneratedValue
     private int id;
 
-    @NotBlank
-    private String comment;
-
     @NotNull
-    private int priority;
+    private int amount;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private ProductEntity product;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
+    @ManyToOne
+    @JoinColumn(name="batch_id")
+    private BatchEntity batch;
 
     @NotNull
     private LocalDateTime createdAt;
 
     @NotNull
     private LocalDateTime updatedAt;
-
-    @NotNull
-    private boolean status;
 }

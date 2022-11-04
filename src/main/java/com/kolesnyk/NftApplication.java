@@ -1,11 +1,7 @@
 package com.kolesnyk;
 
-import com.kolesnyk.model.Transaction;
+import com.kolesnyk.model.TransactionEntity;
 import com.kolesnyk.repository.TransactionDao;
-import com.kolesnyk.repository.TransactionDaoImpl;
-import com.kolesnyk.repository.UserRepository;
-import com.kolesnyk.model.User;
-import com.kolesnyk.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,7 +20,7 @@ public class NftApplication {
     @Bean
     CommandLineRunner sd(TransactionDao transactionDao) {
         return args -> {
-            Transaction transaction = new Transaction();
+            TransactionEntity transaction = new TransactionEntity();
             transaction.setAmount(3299);
             transactionDao.update(transaction, 4);
         };

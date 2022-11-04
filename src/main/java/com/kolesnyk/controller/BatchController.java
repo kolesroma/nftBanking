@@ -2,9 +2,7 @@ package com.kolesnyk.controller;
 
 import com.kolesnyk.dto.BatchCreationDto;
 import com.kolesnyk.dto.BatchDto;
-import com.kolesnyk.model.Batch;
 import com.kolesnyk.service.BatchService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 

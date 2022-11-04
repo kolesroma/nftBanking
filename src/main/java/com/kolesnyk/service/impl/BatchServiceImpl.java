@@ -4,7 +4,7 @@ import com.kolesnyk.dto.BatchCreationDto;
 import com.kolesnyk.dto.BatchDto;
 import com.kolesnyk.dto.mapper.BatchMapper;
 import com.kolesnyk.exception.BatchNotFound;
-import com.kolesnyk.model.Batch;
+import com.kolesnyk.model.BatchEntity;
 import com.kolesnyk.repository.BatchRepository;
 import com.kolesnyk.service.BatchService;
 import org.springframework.data.domain.PageRequest;
@@ -29,7 +29,7 @@ public class BatchServiceImpl implements BatchService {
 
     @Override
     public BatchDto getById(int id) {
-        Batch batch = batchRepository.findById(id)
+        BatchEntity batch = batchRepository.findById(id)
                 .orElseThrow(() -> new BatchNotFound("there is no batch with id " + id));
         return mapper.toDto(batch);
     }
@@ -45,7 +45,7 @@ public class BatchServiceImpl implements BatchService {
     public void updateBatch(BatchCreationDto batchDto, int id) {
         if (!batchRepository.existsById(id))
             throw new BatchNotFound("there is no batch with id " + id);
-        Batch batch = mapper.toBatch(batchDto);
+        BatchEntity batch = mapper.toBatch(batchDto);
         batch.setId(id);
         batchRepository.save(batch);
     }

@@ -4,7 +4,7 @@ import com.kolesnyk.dto.ProductCreationDto;
 import com.kolesnyk.dto.ProductDto;
 import com.kolesnyk.dto.mapper.ProductMapper;
 import com.kolesnyk.exception.ProductNotFound;
-import com.kolesnyk.model.Product;
+import com.kolesnyk.model.ProductEntity;
 import com.kolesnyk.repository.ProductRepository;
 import com.kolesnyk.service.ProductService;
 import org.springframework.data.domain.PageRequest;
@@ -29,7 +29,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto getById(int id) {
-        Product product = productRepository.findById(id)
+        ProductEntity product = productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFound("there is no product with id " + id));
         return mapper.toDto(product);
     }
@@ -45,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
     public void updateProduct(ProductCreationDto productDto, int productId) {
         if (!productRepository.existsById(productId))
             throw new ProductNotFound("there is no product with id " + productId);
-        Product product = mapper.toProduct(productDto);
+        ProductEntity product = mapper.toProduct(productDto);
         product.setId(productId);
         productRepository.save(product);
     }

@@ -4,7 +4,7 @@ import com.kolesnyk.dto.TransactionCreationDto;
 import com.kolesnyk.dto.TransactionDto;
 import com.kolesnyk.dto.mapper.TransactionMapper;
 import com.kolesnyk.exception.TransactionNotFound;
-import com.kolesnyk.model.Transaction;
+import com.kolesnyk.model.TransactionEntity;
 import com.kolesnyk.repository.TransactionRepository;
 import com.kolesnyk.service.TransactionService;
 import org.springframework.data.domain.PageRequest;
@@ -29,7 +29,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public TransactionDto getById(int id) {
-        Transaction transaction = transactionRepository.findById(id)
+        TransactionEntity transaction = transactionRepository.findById(id)
                 .orElseThrow(() -> new TransactionNotFound("there is no transaction with id " + id));
         return mapper.toDto(transaction);
     }
@@ -46,7 +46,7 @@ public class TransactionServiceImpl implements TransactionService {
     public void updateTransaction(TransactionCreationDto transactionDto, int transactionId) {
         if (!transactionRepository.existsById(transactionId))
             throw new TransactionNotFound("there is no transaction with id " + transactionId);
-        Transaction transaction = mapper.toTransaction(transactionDto);
+        TransactionEntity transaction = mapper.toTransaction(transactionDto);
         transaction.setId(transactionId);
         transactionRepository.save(transaction);
     }
