@@ -9,6 +9,7 @@ import com.kolesnyk.repository.TransactionRepository;
 import com.kolesnyk.service.TransactionService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
@@ -43,6 +44,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     // open transaction cuz of 2 DB req ??
     @Override
+    @Transactional
     public void updateTransaction(TransactionCreationDto transactionDto, int transactionId) {
         if (!transactionRepository.existsById(transactionId)) {
             throw new TransactionNotFound("there is no transaction with id " + transactionId);
@@ -53,6 +55,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
+    @Transactional
     public void deleteTransaction(int transactionId) {
         if (!transactionRepository.existsById(transactionId)) {
             throw new TransactionNotFound("there is no transaction with id " + transactionId);

@@ -9,6 +9,7 @@ import com.kolesnyk.repository.BatchRepository;
 import com.kolesnyk.service.BatchService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
@@ -42,6 +43,7 @@ public class BatchServiceImpl implements BatchService {
     }
 
     @Override
+    @Transactional
     public void updateBatch(BatchCreationDto batchDto, int id) {
         if (!batchRepository.existsById(id)) {
             throw new BatchNotFound("there is no batch with id " + id);
@@ -52,6 +54,7 @@ public class BatchServiceImpl implements BatchService {
     }
 
     @Override
+    @Transactional
     public void deleteBatch(int id) {
         if (!batchRepository.existsById(id)) {
             throw new BatchNotFound("there is no batch with id " + id);

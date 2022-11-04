@@ -9,6 +9,7 @@ import com.kolesnyk.repository.ProductRepository;
 import com.kolesnyk.service.ProductService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
@@ -42,6 +43,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void updateProduct(ProductCreationDto productDto, int productId) {
         if (!productRepository.existsById(productId)) {
             throw new ProductNotFound("there is no product with id " + productId);
@@ -52,6 +54,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void deleteProduct(int id) {
         if (!productRepository.existsById(id)) {
             throw new ProductNotFound("there is no product with id " + id);

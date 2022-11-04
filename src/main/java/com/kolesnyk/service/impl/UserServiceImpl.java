@@ -9,6 +9,7 @@ import com.kolesnyk.repository.UserRepository;
 import com.kolesnyk.service.UserService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
@@ -42,6 +43,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void updateUser(UserCreationDto userDto, int userId) {
         if (!userRepository.existsById(userId)) {
             throw new UserNotFound("there is no user with id " + userId);
@@ -52,6 +54,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void deleteUser(int userId) {
         if (!userRepository.existsById(userId)) {
             throw new UserNotFound("there is no user with id " + userId);
