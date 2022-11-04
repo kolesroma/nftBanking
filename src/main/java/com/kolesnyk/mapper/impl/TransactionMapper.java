@@ -1,13 +1,15 @@
-package com.kolesnyk.dto.mapper;
+package com.kolesnyk.mapper.impl;
 
 import com.kolesnyk.dto.TransactionCreationDto;
 import com.kolesnyk.dto.TransactionDto;
+import com.kolesnyk.mapper.GeneralMapper;
 import com.kolesnyk.model.TransactionEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TransactionMapper {
-    public TransactionEntity toTransaction(TransactionCreationDto transactionDto) {
+public class TransactionMapper implements GeneralMapper<TransactionEntity, TransactionCreationDto, TransactionDto> {
+    @Override
+    public TransactionEntity toEntity(TransactionCreationDto transactionDto) {
         return TransactionEntity.builder()
                 .id(0)
                 .amount(transactionDto.getAmount())
@@ -19,6 +21,7 @@ public class TransactionMapper {
                 .build();
     }
 
+    @Override
     public TransactionDto toDto(TransactionEntity transaction) {
         return TransactionDto.builder()
                 .id(transaction.getId())

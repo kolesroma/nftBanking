@@ -1,13 +1,15 @@
-package com.kolesnyk.dto.mapper;
+package com.kolesnyk.mapper.impl;
 
 import com.kolesnyk.dto.UserCreationDto;
 import com.kolesnyk.dto.UserDto;
+import com.kolesnyk.mapper.GeneralMapper;
 import com.kolesnyk.model.UserEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserMapper {
-    public UserEntity toUser(UserCreationDto userDto) {
+public class UserMapper implements GeneralMapper<UserEntity, UserCreationDto, UserDto> {
+    @Override
+    public UserEntity toEntity(UserCreationDto userDto) {
         return UserEntity.builder()
                 .id(0)
                 .username(userDto.getUsername())
@@ -18,6 +20,7 @@ public class UserMapper {
                 .build();
     }
 
+    @Override
     public UserDto toDto(UserEntity user) {
         return UserDto.builder()
                 .id(user.getId())

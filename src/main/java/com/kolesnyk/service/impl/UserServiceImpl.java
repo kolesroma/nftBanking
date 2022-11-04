@@ -2,7 +2,7 @@ package com.kolesnyk.service.impl;
 
 import com.kolesnyk.dto.UserCreationDto;
 import com.kolesnyk.dto.UserDto;
-import com.kolesnyk.dto.mapper.UserMapper;
+import com.kolesnyk.mapper.impl.UserMapper;
 import com.kolesnyk.exception.UserNotFound;
 import com.kolesnyk.model.UserEntity;
 import com.kolesnyk.repository.UserRepository;
@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(UserCreationDto userDto) {
-        userRepository.save(mapper.toUser(userDto));
+        userRepository.save(mapper.toEntity(userDto));
     }
 
     @Override
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     public void updateUser(UserCreationDto userDto, int userId) {
         if (!userRepository.existsById(userId))
             throw new UserNotFound("there is no user with id " + userId);
-        UserEntity user = mapper.toUser(userDto);
+        UserEntity user = mapper.toEntity(userDto);
         user.setId(userId);
         userRepository.save(user);
     }

@@ -2,7 +2,7 @@ package com.kolesnyk.service.impl;
 
 import com.kolesnyk.dto.BatchCreationDto;
 import com.kolesnyk.dto.BatchDto;
-import com.kolesnyk.dto.mapper.BatchMapper;
+import com.kolesnyk.mapper.impl.BatchMapper;
 import com.kolesnyk.exception.BatchNotFound;
 import com.kolesnyk.model.BatchEntity;
 import com.kolesnyk.repository.BatchRepository;
@@ -24,7 +24,7 @@ public class BatchServiceImpl implements BatchService {
 
     @Override
     public void saveBatch(BatchCreationDto batchDto) {
-        batchRepository.save(mapper.toBatch(batchDto));
+        batchRepository.save(mapper.toEntity(batchDto));
     }
 
     @Override
@@ -45,7 +45,7 @@ public class BatchServiceImpl implements BatchService {
     public void updateBatch(BatchCreationDto batchDto, int id) {
         if (!batchRepository.existsById(id))
             throw new BatchNotFound("there is no batch with id " + id);
-        BatchEntity batch = mapper.toBatch(batchDto);
+        BatchEntity batch = mapper.toEntity(batchDto);
         batch.setId(id);
         batchRepository.save(batch);
     }

@@ -1,13 +1,15 @@
-package com.kolesnyk.dto.mapper;
+package com.kolesnyk.mapper.impl;
 
 import com.kolesnyk.dto.BatchCreationDto;
 import com.kolesnyk.dto.BatchDto;
+import com.kolesnyk.mapper.GeneralMapper;
 import com.kolesnyk.model.BatchEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BatchMapper {
-    public BatchEntity toBatch(BatchCreationDto batchDto) {
+public class BatchMapper implements GeneralMapper<BatchEntity, BatchCreationDto, BatchDto> {
+    @Override
+    public BatchEntity toEntity(BatchCreationDto batchDto) {
         return BatchEntity.builder()
                 .id(0)
                 .comment(batchDto.getComment())
@@ -18,6 +20,7 @@ public class BatchMapper {
                 .build();
     }
 
+    @Override
     public BatchDto toDto(BatchEntity batch) {
         return BatchDto.builder()
                 .id(batch.getId())

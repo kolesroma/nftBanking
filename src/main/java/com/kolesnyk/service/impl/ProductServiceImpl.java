@@ -2,7 +2,7 @@ package com.kolesnyk.service.impl;
 
 import com.kolesnyk.dto.ProductCreationDto;
 import com.kolesnyk.dto.ProductDto;
-import com.kolesnyk.dto.mapper.ProductMapper;
+import com.kolesnyk.mapper.impl.ProductMapper;
 import com.kolesnyk.exception.ProductNotFound;
 import com.kolesnyk.model.ProductEntity;
 import com.kolesnyk.repository.ProductRepository;
@@ -24,7 +24,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void saveProduct(ProductCreationDto productDto) {
-        productRepository.save(mapper.toProduct(productDto));
+        productRepository.save(mapper.toEntity(productDto));
     }
 
     @Override
@@ -45,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
     public void updateProduct(ProductCreationDto productDto, int productId) {
         if (!productRepository.existsById(productId))
             throw new ProductNotFound("there is no product with id " + productId);
-        ProductEntity product = mapper.toProduct(productDto);
+        ProductEntity product = mapper.toEntity(productDto);
         product.setId(productId);
         productRepository.save(product);
     }
