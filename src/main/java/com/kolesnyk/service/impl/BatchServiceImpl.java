@@ -43,8 +43,9 @@ public class BatchServiceImpl implements BatchService {
 
     @Override
     public void updateBatch(BatchCreationDto batchDto, int id) {
-        if (!batchRepository.existsById(id))
+        if (!batchRepository.existsById(id)) {
             throw new BatchNotFound("there is no batch with id " + id);
+        }
         BatchEntity batch = mapper.toEntity(batchDto);
         batch.setId(id);
         batchRepository.save(batch);
@@ -52,8 +53,9 @@ public class BatchServiceImpl implements BatchService {
 
     @Override
     public void deleteBatch(int id) {
-        if (!batchRepository.existsById(id))
+        if (!batchRepository.existsById(id)) {
             throw new BatchNotFound("there is no batch with id " + id);
+        }
         batchRepository.deleteById(id);
     }
 }

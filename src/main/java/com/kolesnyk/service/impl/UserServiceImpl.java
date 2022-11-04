@@ -43,8 +43,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(UserCreationDto userDto, int userId) {
-        if (!userRepository.existsById(userId))
+        if (!userRepository.existsById(userId)) {
             throw new UserNotFound("there is no user with id " + userId);
+        }
         UserEntity user = mapper.toEntity(userDto);
         user.setId(userId);
         userRepository.save(user);
@@ -52,8 +53,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(int userId) {
-        if (!userRepository.existsById(userId))
+        if (!userRepository.existsById(userId)) {
             throw new UserNotFound("there is no user with id " + userId);
+        }
         userRepository.deleteById(userId);
     }
 }

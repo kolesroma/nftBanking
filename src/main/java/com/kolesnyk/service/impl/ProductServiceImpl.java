@@ -43,8 +43,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void updateProduct(ProductCreationDto productDto, int productId) {
-        if (!productRepository.existsById(productId))
+        if (!productRepository.existsById(productId)) {
             throw new ProductNotFound("there is no product with id " + productId);
+        }
         ProductEntity product = mapper.toEntity(productDto);
         product.setId(productId);
         productRepository.save(product);
@@ -52,8 +53,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProduct(int id) {
-        if (!productRepository.existsById(id))
+        if (!productRepository.existsById(id)) {
             throw new ProductNotFound("there is no product with id " + id);
+        }
         productRepository.deleteById(id);
     }
 }

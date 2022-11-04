@@ -44,8 +44,9 @@ public class TransactionServiceImpl implements TransactionService {
     // open transaction cuz of 2 DB req ??
     @Override
     public void updateTransaction(TransactionCreationDto transactionDto, int transactionId) {
-        if (!transactionRepository.existsById(transactionId))
+        if (!transactionRepository.existsById(transactionId)) {
             throw new TransactionNotFound("there is no transaction with id " + transactionId);
+        }
         TransactionEntity transaction = mapper.toEntity(transactionDto);
         transaction.setId(transactionId);
         transactionRepository.save(transaction);
@@ -53,8 +54,9 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public void deleteTransaction(int transactionId) {
-        if (!transactionRepository.existsById(transactionId))
+        if (!transactionRepository.existsById(transactionId)) {
             throw new TransactionNotFound("there is no transaction with id " + transactionId);
+        }
         transactionRepository.deleteById(transactionId);
     }
 }
