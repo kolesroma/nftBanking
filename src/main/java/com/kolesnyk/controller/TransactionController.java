@@ -3,6 +3,7 @@ package com.kolesnyk.controller;
 import com.kolesnyk.dto.TransactionCreationDto;
 import com.kolesnyk.dto.TransactionDto;
 import com.kolesnyk.service.TransactionService;
+import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,12 +15,9 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/nft/transactions")
 @Validated
+@AllArgsConstructor
 public class TransactionController {
     private final TransactionService transactionService;
-
-    public TransactionController(TransactionService transactionService) {
-        this.transactionService = transactionService;
-    }
 
     @PostMapping
     public void createTransaction(@Valid @RequestBody TransactionCreationDto transactionDto) {

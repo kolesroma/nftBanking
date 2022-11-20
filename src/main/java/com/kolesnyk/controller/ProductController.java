@@ -3,6 +3,7 @@ package com.kolesnyk.controller;
 import com.kolesnyk.dto.ProductCreationDto;
 import com.kolesnyk.dto.ProductDto;
 import com.kolesnyk.service.ProductService;
+import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,12 +15,9 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/nft/products")
 @Validated
+@AllArgsConstructor
 public class ProductController {
     private final ProductService productService;
-
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
 
     @PostMapping
     public void createProduct(@Valid @RequestBody ProductCreationDto productDto) {

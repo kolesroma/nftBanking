@@ -7,6 +7,7 @@ import com.kolesnyk.exception.TransactionNotFound;
 import com.kolesnyk.model.TransactionEntity;
 import com.kolesnyk.repository.TransactionRepository;
 import com.kolesnyk.service.TransactionService;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,14 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 
 @Service
+@AllArgsConstructor
 public class TransactionServiceImpl implements TransactionService {
     private final TransactionRepository transactionRepository;
     private final TransactionMapper mapper;
-
-    public TransactionServiceImpl(TransactionRepository transactionRepository, TransactionMapper mapper) {
-        this.transactionRepository = transactionRepository;
-        this.mapper = mapper;
-    }
 
     @Override
     public void saveTransaction(TransactionCreationDto transactionDto) {
@@ -42,7 +39,6 @@ public class TransactionServiceImpl implements TransactionService {
                 .getContent();
     }
 
-    // open transaction cuz of 2 DB req ??
     @Override
     @Transactional
     public void updateTransaction(TransactionCreationDto transactionDto, int transactionId) {

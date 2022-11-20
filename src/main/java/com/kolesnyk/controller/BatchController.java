@@ -3,6 +3,7 @@ package com.kolesnyk.controller;
 import com.kolesnyk.dto.BatchCreationDto;
 import com.kolesnyk.dto.BatchDto;
 import com.kolesnyk.service.BatchService;
+import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,15 +15,12 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/nft/batches")
 @Validated
+@AllArgsConstructor
 public class BatchController {
     private final BatchService batchService;
 
-    public BatchController(BatchService batchService) {
-        this.batchService = batchService;
-    }
-
     @PostMapping
-    public void createBatch(@Valid @RequestBody BatchCreationDto batchDto) {
+    public void createBatch(@Valid @RequestBody BatchCreationDto batchDto) { // remove creation dto
         batchService.saveBatch(batchDto);
     }
 

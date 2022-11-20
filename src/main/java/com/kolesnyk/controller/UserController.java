@@ -3,6 +3,7 @@ package com.kolesnyk.controller;
 import com.kolesnyk.dto.UserCreationDto;
 import com.kolesnyk.dto.UserDto;
 import com.kolesnyk.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,12 +15,9 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/nft/users")
 @Validated
+@AllArgsConstructor
 public class UserController {
     private final UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     @PostMapping
     public void createUser(@Valid @RequestBody UserCreationDto userDto) {

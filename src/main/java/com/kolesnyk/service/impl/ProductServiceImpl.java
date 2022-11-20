@@ -7,6 +7,7 @@ import com.kolesnyk.exception.ProductNotFound;
 import com.kolesnyk.model.ProductEntity;
 import com.kolesnyk.repository.ProductRepository;
 import com.kolesnyk.service.ProductService;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,14 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 
 @Service
+@AllArgsConstructor
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper mapper;
-
-    public ProductServiceImpl(ProductRepository productRepository, ProductMapper mapper) {
-        this.productRepository = productRepository;
-        this.mapper = mapper;
-    }
 
     @Override
     public void saveProduct(ProductCreationDto productDto) {

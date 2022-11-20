@@ -7,6 +7,7 @@ import com.kolesnyk.exception.UserNotFound;
 import com.kolesnyk.model.UserEntity;
 import com.kolesnyk.repository.UserRepository;
 import com.kolesnyk.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,14 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper mapper;
-
-    public UserServiceImpl(UserRepository userRepository, UserMapper mapper) {
-        this.userRepository = userRepository;
-        this.mapper = mapper;
-    }
 
     @Override
     public void saveUser(UserCreationDto userDto) {

@@ -7,6 +7,7 @@ import com.kolesnyk.exception.BatchNotFound;
 import com.kolesnyk.model.BatchEntity;
 import com.kolesnyk.repository.BatchRepository;
 import com.kolesnyk.service.BatchService;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,14 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 
 @Service
+@AllArgsConstructor
 public class BatchServiceImpl implements BatchService {
     private final BatchRepository batchRepository;
     private final BatchMapper mapper;
-
-    public BatchServiceImpl(BatchRepository batchRepository, BatchMapper mapper) {
-        this.batchRepository = batchRepository;
-        this.mapper = mapper;
-    }
 
     @Override
     public void saveBatch(BatchCreationDto batchDto) {
