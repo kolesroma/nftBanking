@@ -1,6 +1,6 @@
 package com.kolesnyk.service.impl;
 
-import com.kolesnyk.dto.BatchCreationDto;
+import com.kolesnyk.dto.creation.BatchCreationDto;
 import com.kolesnyk.dto.BatchDto;
 import com.kolesnyk.mapper.impl.BatchMapper;
 import com.kolesnyk.exception.BatchNotFound;

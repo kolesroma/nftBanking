@@ -1,6 +1,6 @@
 package com.kolesnyk.service.impl;
 
-import com.kolesnyk.dto.ProductCreationDto;
+import com.kolesnyk.dto.creation.ProductCreationDto;
 import com.kolesnyk.dto.ProductDto;
 import com.kolesnyk.mapper.impl.ProductMapper;
 import com.kolesnyk.exception.ProductNotFound;

@@ -1,6 +1,6 @@
 package com.kolesnyk.controller;
 
-import com.kolesnyk.dto.BatchCreationDto;
+import com.kolesnyk.dto.creation.BatchCreationDto;
 import com.kolesnyk.dto.BatchDto;
 import com.kolesnyk.service.BatchService;
 import lombok.AllArgsConstructor;

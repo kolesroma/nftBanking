@@ -1,6 +1,6 @@
 package com.kolesnyk.mapper.impl;
 
-import com.kolesnyk.dto.BatchCreationDto;
+import com.kolesnyk.dto.creation.BatchCreationDto;
 import com.kolesnyk.dto.BatchDto;
 import com.kolesnyk.mapper.CreationDtoMapper;
 import com.kolesnyk.mapper.DtoMapper;

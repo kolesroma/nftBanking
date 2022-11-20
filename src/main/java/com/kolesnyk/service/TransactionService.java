@@ -1,6 +1,6 @@
 package com.kolesnyk.service;
 
-import com.kolesnyk.dto.TransactionCreationDto;
+import com.kolesnyk.dto.creation.TransactionCreationDto;
 import com.kolesnyk.dto.TransactionDto;
 
 import java.util.Collection;

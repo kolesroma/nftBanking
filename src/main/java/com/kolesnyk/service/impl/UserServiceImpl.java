@@ -1,6 +1,6 @@
 package com.kolesnyk.service.impl;
 
-import com.kolesnyk.dto.UserCreationDto;
+import com.kolesnyk.dto.creation.UserCreationDto;
 import com.kolesnyk.dto.UserDto;
 import com.kolesnyk.mapper.impl.UserMapper;
 import com.kolesnyk.exception.UserNotFound;

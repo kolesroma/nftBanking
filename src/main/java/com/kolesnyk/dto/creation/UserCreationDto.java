@@ -1,10 +1,11 @@
-package com.kolesnyk.dto;
+package com.kolesnyk.dto.creation;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -12,19 +13,19 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductCreationDto {
+public class UserCreationDto {
     @NotBlank
-    private String description;
+    private String username;
+
+    @Email
+    private String email;
 
     @NotBlank
-    private String shortName;
+    private String phone;
 
     @NotNull
-    private int price;
+    private int balance;
 
-    @NotBlank
-    private String fullName;
-
-    @NotBlank
-    private String upc;
+    @NotNull
+    private boolean enabled;
 }

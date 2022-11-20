@@ -1,6 +1,6 @@
 package com.kolesnyk.controller;
 
-import com.kolesnyk.dto.TransactionCreationDto;
+import com.kolesnyk.dto.creation.TransactionCreationDto;
 import com.kolesnyk.dto.TransactionDto;
 import com.kolesnyk.service.TransactionService;
 import lombok.AllArgsConstructor;

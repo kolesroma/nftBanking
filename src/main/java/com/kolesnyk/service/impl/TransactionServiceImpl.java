@@ -1,6 +1,6 @@
 package com.kolesnyk.service.impl;
 
-import com.kolesnyk.dto.TransactionCreationDto;
+import com.kolesnyk.dto.creation.TransactionCreationDto;
 import com.kolesnyk.dto.TransactionDto;
 import com.kolesnyk.mapper.impl.TransactionMapper;
 import com.kolesnyk.exception.TransactionNotFound;

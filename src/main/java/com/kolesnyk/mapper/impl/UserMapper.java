@@ -1,6 +1,6 @@
 package com.kolesnyk.mapper.impl;
 
-import com.kolesnyk.dto.UserCreationDto;
+import com.kolesnyk.dto.creation.UserCreationDto;
 import com.kolesnyk.dto.UserDto;
 import com.kolesnyk.mapper.CreationDtoMapper;
 import com.kolesnyk.mapper.DtoMapper;

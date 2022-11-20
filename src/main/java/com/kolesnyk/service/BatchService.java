@@ -1,6 +1,6 @@
 package com.kolesnyk.service;
 
-import com.kolesnyk.dto.BatchCreationDto;
+import com.kolesnyk.dto.creation.BatchCreationDto;
 import com.kolesnyk.dto.BatchDto;
 
 import java.util.Collection;

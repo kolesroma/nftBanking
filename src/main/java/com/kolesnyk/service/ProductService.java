@@ -1,6 +1,6 @@
 package com.kolesnyk.service;
 
-import com.kolesnyk.dto.ProductCreationDto;
+import com.kolesnyk.dto.creation.ProductCreationDto;
 import com.kolesnyk.dto.ProductDto;
 
 import java.util.Collection;

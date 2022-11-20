@@ -1,13 +1,11 @@
-package com.kolesnyk.dto;
+package com.kolesnyk.dto.creation;
 
-import com.kolesnyk.model.BatchEntity;
-import com.kolesnyk.model.ProductEntity;
-import com.kolesnyk.model.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
@@ -15,19 +13,19 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TransactionCreationDto {
+public class BatchCreationDto {
+    @NotBlank
+    private String comment;
+
     @NotNull
-    private int amount;
-
-    private ProductEntity product;
-
-    private UserEntity user;
-
-    private BatchEntity batch;
+    private int priority;
 
     @NotNull
     private LocalDateTime createdAt;
 
     @NotNull
     private LocalDateTime updatedAt;
+
+    @NotNull
+    private boolean status;
 }

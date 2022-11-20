@@ -1,6 +1,6 @@
 package com.kolesnyk.service;
 
-import com.kolesnyk.dto.UserCreationDto;
+import com.kolesnyk.dto.creation.UserCreationDto;
 import com.kolesnyk.dto.UserDto;
 
 import java.util.Collection;

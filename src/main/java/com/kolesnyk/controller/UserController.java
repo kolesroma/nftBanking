@@ -1,6 +1,6 @@
 package com.kolesnyk.controller;
 
-import com.kolesnyk.dto.UserCreationDto;
+import com.kolesnyk.dto.creation.UserCreationDto;
 import com.kolesnyk.dto.UserDto;
 import com.kolesnyk.service.UserService;
 import lombok.AllArgsConstructor;
