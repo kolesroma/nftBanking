@@ -2,12 +2,13 @@ package com.kolesnyk.mapper.impl;
 
 import com.kolesnyk.dto.ProductCreationDto;
 import com.kolesnyk.dto.ProductDto;
-import com.kolesnyk.mapper.GeneralMapper;
+import com.kolesnyk.mapper.CreationDtoMapper;
+import com.kolesnyk.mapper.DtoMapper;
 import com.kolesnyk.model.ProductEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProductMapper implements GeneralMapper<ProductEntity, ProductCreationDto, ProductDto> {
+public class ProductMapper implements DtoMapper<ProductEntity, ProductDto>, CreationDtoMapper<ProductEntity, ProductCreationDto> {
     @Override
     public ProductEntity toEntity(ProductCreationDto productDto) {
         return ProductEntity.builder()

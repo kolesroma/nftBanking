@@ -2,12 +2,13 @@ package com.kolesnyk.mapper.impl;
 
 import com.kolesnyk.dto.TransactionCreationDto;
 import com.kolesnyk.dto.TransactionDto;
-import com.kolesnyk.mapper.GeneralMapper;
+import com.kolesnyk.mapper.CreationDtoMapper;
+import com.kolesnyk.mapper.DtoMapper;
 import com.kolesnyk.model.TransactionEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TransactionMapper implements GeneralMapper<TransactionEntity, TransactionCreationDto, TransactionDto> {
+public class TransactionMapper implements DtoMapper<TransactionEntity, TransactionDto>, CreationDtoMapper<TransactionEntity, TransactionCreationDto> {
     @Override
     public TransactionEntity toEntity(TransactionCreationDto transactionDto) {
         return TransactionEntity.builder()

@@ -2,12 +2,13 @@ package com.kolesnyk.mapper.impl;
 
 import com.kolesnyk.dto.UserCreationDto;
 import com.kolesnyk.dto.UserDto;
-import com.kolesnyk.mapper.GeneralMapper;
+import com.kolesnyk.mapper.CreationDtoMapper;
+import com.kolesnyk.mapper.DtoMapper;
 import com.kolesnyk.model.UserEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserMapper implements GeneralMapper<UserEntity, UserCreationDto, UserDto> {
+public class UserMapper implements DtoMapper<UserEntity, UserDto>, CreationDtoMapper<UserEntity, UserCreationDto> {
     @Override
     public UserEntity toEntity(UserCreationDto userDto) {
         return UserEntity.builder()
